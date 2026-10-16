@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAWASENA KERJA</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7f5;color:#20352b}
+header{background:#124b35;color:white;padding:25px 6%}
+.logo{font-size:25px;font-weight:bold;letter-spacing:1px}
+header p{margin-bottom:0;color:#d8f0df}
+.hero{padding:55px 6%;background:linear-gradient(120deg,#155a3c,#25815a);color:white}
+.hero h1{font-size:36px;margin:0 0 12px}
+.hero p{font-size:17px;line-height:1.6}
+.search{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px}
+input,select,button{padding:14px;border:0;border-radius:8px;font-size:15px}
+input,select{flex:1;min-width:180px}
+button{background:#e7bb58;color:#183c2b;font-weight:bold;cursor:pointer}
+main{padding:30px 6%}
+h2{color:#155a3c}
+.jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:white;padding:22px;border-radius:14px;box-shadow:0 4px 15px #183c2b12}
+.card h3{margin-top:0;color:#155a3c}
+.tag{display:inline-block;background:#e3f4e8;padding:6px 10px;border-radius:20px;font-size:12px}
+.card p{color:#52645a;line-height:1.5}
+.apply{display:inline-block;background:#155a3c;color:white;padding:11px 15px;border-radius:7px;text-decoration:none;margin-top:8px}
+.note{font-size:13px;color:#68786f}
+footer{background:#103e2c;color:white;text-align:center;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🌿 NAWASENA KERJA</div>
+<p>Peluang Kerja, Masa Depan Lebih Baik</p>
+</header>
+<section class="hero">
+<h1>Temukan Peluang Kerja Impianmu</h1>
+<p>Jelajahi informasi lowongan kerja dan temukan peluang untuk masa depan yang lebih baik.</p>
+<div class="search">
+<input id="q" placeholder="Cari posisi pekerjaan...">
+<select id="loc">
+<option value="">Semua lokasi</option>
+<option>Jakarta</option>
+<option>Surabaya</option>
+<option>Bandung</option>
+<option>Semarang</option>
+<option>Bali</option>
+</select>
+<button onclick="searchJobs()">Cari Lowongan</button>
+</div>
+</section>
+<main>
+<h2>💼 Informasi Lowongan Kerja</h2>
+<p>Temukan pekerjaan sesuai minat dan kemampuanmu.</p>
+<div class="jobs" id="jobs">
+<article class="card" data-title="admin" data-loc="jakarta">
+<span class="tag">Contoh lowongan</span>
+<h3>Staff Administrasi</h3>
+<p>📍 Jakarta</p><p>Posisi administrasi kantor. Periksa kualifikasi dan informasi perusahaan sebelum melamar.</p>
+<a class="apply" href="https://www.kemnaker.go.id/" target="_blank">Cari Informasi Resmi</a>
+</article>
+<article class="card" data-title="operator produksi" data-loc="surabaya">
+<span class="tag">Contoh lowongan</span>
+<h3>Operator Produksi</h3>
+<p>📍 Surabaya</p><p>Contoh kategori pekerjaan manufaktur. Pastikan tersedia lowongan aktif sebelum melamar.</p>
+<a class="apply" href="https://karirhub.kemnaker.go.id/" target="_blank">Lihat KarirHub</a>
+</article>
+<article class="card" data-title="customer service" data-loc="bandung">
+<span class="tag">Contoh lowongan</span>
+<h3>Customer Service</h3>
+<p>📍 Bandung</p><p>Contoh kategori pekerjaan layanan pelanggan. Detail perusahaan perlu diverifikasi.</p>
+<a class="apply" href="https://karirhub.kemnaker.go.id/" target="_blank">Cari Lowongan</a>
+</article>
+</div>
+<p class="note">Catatan: daftar di atas adalah contoh tampilan, bukan konfirmasi lowongan aktif. Selalu verifikasi sumber dan jangan membayar biaya rekrutmen yang mencurigakan.</p>
+</main>
+<footer>
+<strong>NAWASENA KERJA</strong>
+<p>Peluang Kerja, Masa Depan Lebih Baik</p>
+<p>Informasi kerja yang jelas, cermat, dan bertanggung jawab.</p>
+</footer>
+<script>
+function searchJobs(){
+const q=document.getElementById('q').value.toLowerCase();
+const loc=document.getElementById('loc').value.toLowerCase();
+document.querySelectorAll('.card').forEach(card=>{
+const title=card.dataset.title;
+const place=card.dataset.loc;
+card.style.display=(title.includes(q)&&(!loc||place===loc))?'block':'none';
+});
+}
+</script>
+</body>
+</html>
