@@ -206,12 +206,13 @@
       console.log("Data lowongan:", data);
 console.log("Kesalahan Supabase:", error);
 
-      if (error) {
-        console.error("Kesalahan Supabase:", error);
-        pesan.textContent =
-          "Data belum dapat dimuat. Periksa koneksi, izin akses tabel, dan pengaturan keamanan Supabase.";
-        return;
-      }
+     if (error) {
+  console.error("Kesalahan Supabase:", error);
+
+  pesan.textContent = "Error: " + error.message;
+
+  return;
+}
 
       lowongan = data || [];
       tampilkanLowongan();
