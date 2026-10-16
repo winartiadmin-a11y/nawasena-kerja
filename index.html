@@ -276,23 +276,42 @@ console.log("Kesalahan Supabase:", error);
           kartu.append(batas);
         }
 
-        if (item.sumber_url) {
-          try {
-            const url = new URL(item.sumber_url);
+       const detail = document.createElement("button");
+detail.type = "button";
+detail.textContent = "Detail Lowongan";
 
-            if (url.protocol === "https:" || url.protocol === "http:") {
-              const tautan = document.createElement("a");
-              tautan.className = "lamar";
-              tautan.href = url.href;
-              tautan.target = "_blank";
-              tautan.rel = "noopener noreferrer";
-              tautan.textContent = "Lihat Lowongan";
-              kartu.append(tautan);
-            }
-          } catch {
-            // Abaikan tautan yang formatnya tidak valid.
-          }
-        }
+detail.addEventListener("click", function () {
+  alert(
+    "DETAIL LOWONGAN\n\n" +
+    "Jabatan: " + (item.judul || "-") + "\n" +
+    "Perusahaan: " + (item.perusahaan || "-") + "\n" +
+    "Lokasi: " + (item.lokasi || "-") + "\n" +
+    "Pendidikan: " + (item.pendidikan || "-") + "\n" +
+    "Deskripsi: " + (item.deskripsi || "-") + "\n" +
+    "Batas Lamaran: " + (item.batas_lamaran || "-")
+  );
+});
+
+kartu.append(detail);
+
+if (item.sumber_url) {
+  try {
+    const url = new URL(item.sumber_url);
+
+    if (url.protocol === "https:" || url.protocol === "http:") {
+      const tautan = document.createElement("a");
+      tautan.className = "lamar";
+      tautan.href = url.href;
+      tautan.target = "_blank";
+      tautan.rel = "noopener noreferrer";
+      tautan.textContent = "Lamar Sekarang";
+
+      kartu.append(tautan);
+    }
+  } catch (error) {
+    console.warn("Tautan lamaran tidak valid.");
+  }
+}
 
         daftar.append(kartu);
       });
