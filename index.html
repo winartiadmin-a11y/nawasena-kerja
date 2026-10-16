@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NAWASENA KERJA | Info Lowongan Kerja</title>
+
+  <meta name="description"
+    content="Temukan informasi lowongan kerja dari berbagai bidang di seluruh Indonesia. Peluang Kerja, Masa Depan Lebih Baik.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #243047;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #123b32;
+      color: white;
+      padding: 22px 6%;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      color: #d6e9df;
+      font-size: 14px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #123b32, #24785c);
+      color: white;
+      padding: 55px 6%;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(27px, 5vw, 42px);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      margin-bottom: 25px;
+    }
+
+    .search {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 750px;
+      margin: auto;
+    }
+
+    input, select, button {
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    input, select {
+      border: 1px solid #d5dce5;
+      background: white;
+      min-width: 0;
+    }
+
+    .search input {
+      flex: 2;
+    }
+
+    .search select {
+      flex: 1;
+    }
+
+    button {
+      border: none;
+      background: #f3c969;
+      color: #243047;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 35px 6%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit, minmax(135px, 1fr)
+      );
+      gap: 12px;
+      margin-bottom: 38px;
+    }
+
+    .category {
+      background: white;
+      padding: 18px 12px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #e6ebf1;
+      cursor: pointer;
+    }
+
+    .category:hover {
+      border-color: #24785c;
+    }
+
+    .jobs {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit, minmax(260px, 1fr)
+      );
+      gap: 18px;
+    }
+
+    .job {
+      background: white;
+      border: 1px solid #e6ebf1;
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .job h3 {
+      color: #123b32;
+      margin-bottom: 8px;
+    }
+
+    .job p {
+      margin: 5px 0;
+      color: #5d687a;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e0f3e8;
+      color: #17633e;
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin: 10px 0;
+    }
+
+    .job button {
+      width: 100%;
+      margin-top: 12px;
+      background: #176348;
+      color: white;
+    }
+
+    #empty {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background: #123b32;
+      color: white;
+      text-align: center;
+      padding: 25px 6%;
+      margin-top: 30px;
+    }
+
+    footer p {
+      font-size: 13px;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        padding: 40px 5%;
+      }
+
+      .search {
+        flex-direction: column;
+      }
+
+      .search input,
+      .search select,
+      .search button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">NAWASENA KERJA 🇮🇩</div>
+    <div class="tagline">
+      Peluang Kerja, Masa Depan Lebih Baik.
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Temukan Peluang Kariermu</h1>
+    <p>
+      Informasi lowongan kerja dari berbagai bidang
+      di seluruh Indonesia.
+    </p>
+
+    <form class="search" id="searchForm">
+      <input
+        id="keyword"
+        type="search"
+        placeholder="Cari posisi atau perusahaan..."
+        aria-label="Cari posisi atau perusahaan">
+
+      <select id="location" aria-label="Pilih lokasi">
+        <option value="">Semua Lokasi</option>
+        <option>Jakarta</option>
+        <option>Bekasi</option>
+        <option>Surabaya</option>
+        <option>Bandung</option>
+        <option>Tangerang</option>
+        <option>Seluruh Indonesia</option>
+      </select>
+
+      <button type="submit">Cari Lowongan</button>
+    </form>
+  </section>
+
+  <main>
+    <section>
+      <h2>Kategori Pekerjaan</h2>
+
+      <div class="categories">
+        <div class="category" data-category="produksi">
+          🏭<br>Operator Produksi
+        </div>
+
+        <div class="category" data-category="administrasi">
+          🖥️<br>Administrasi
+        </div>
+
+        <div class="category" data-category="gudang">
+          📦<br>Gudang & Logistik
+        </div>
+
+        <div class="category" data-category="retail">
+          🛍️<br>Retail & Kasir
+        </div>
+
+        <div class="category" data-category="restoran">
+          🍽️<br>Restoran & Hotel
+        </div>
+
+        <div class="category" data-category="teknologi">
+          💻<br>Teknologi
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Contoh Tampilan Lowongan</h2>
+
+      <div class="jobs" id="jobs">
+
+        <article class="job"
+          data-title="operator produksi"
+          data-company="contoh perusahaan"
+          data-location="bekasi"
+          data-category="produksi">
+
+          <h3>Operator Produksi</h3>
+          <p>🏢 Contoh Perusahaan</p>
+          <p>📍 Bekasi, Jawa Barat</p>
+          <p>🎓 Kualifikasi mengikuti persyaratan perusahaan</p>
+
+          <span class="badge">Contoh Tampilan</span>
+
+          <button type="button"
+            onclick="showNotice()">
+            Lihat Detail
+          </button>
+        </article>
+
+        <article class="job"
+          data-title="staff administrasi"
+          data-company="contoh perusahaan"
+          data-location="jakarta"
+          data-category="administrasi">
+
+          <h3>Staff Administrasi</h3>
+          <p>🏢 Contoh Perusahaan</p>
+          <p>📍 Jakarta</p>
+          <p>🎓 Kualifikasi mengikuti persyaratan perusahaan</p>
+
+          <span class="badge">Contoh Tampilan</span>
+
+          <button type="button"
+            onclick="showNotice()">
+            Lihat Detail
+          </button>
+        </article>
+
+      </div>
+
+      <p id="empty">
+        Lowongan tidak ditemukan. Coba kata kunci lain.
+      </p>
+
+      <p style="margin-top:18px;font-size:13px;color:#687386">
+        Informasi di atas hanya contoh desain, bukan lowongan
+        aktif. Lowongan sebenarnya harus diperiksa sebelum
+        dipublikasikan.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>NAWASENA KERJA</strong>
+    <p>Peluang Kerja, Masa Depan Lebih Baik.</p>
+    <p>Informasi lowongan kerja dengan sumber yang jelas.</p>
+  </footer>
+
+  <script>
+    const jobs = [...document.querySelectorAll(".job")];
+    const keyword = document.getElementById("keyword");
+    const locationSelect = document.getElementById("location");
+    const empty = document.getElementById("empty");
+
+    let selectedCategory = "";
+
+    function filterJobs() {
+      const query = keyword.value.trim().toLowerCase();
+      const location = locationSelect.value.toLowerCase();
+      let visible = 0;
+
+      jobs.forEach(job => {
+        const title = job.dataset.title;
+        const company = job.dataset.company;
+        const jobLocation = job.dataset.location;
+        const category = job.dataset.category;
+
+        const matchesQuery =
+          !query ||
+          title.includes(query) ||
+          company.includes(query);
+
+        const matchesLocation =
+          !location ||
+          location === "seluruh indonesia" ||
+          jobLocation.includes(location);
+
+        const matchesCategory =
+          !selectedCategory ||
+          category === selectedCategory;
+
+        const show =
+          matchesQuery &&
+          matchesLocation &&
+          matchesCategory;
+
+        job.style.display = show ? "" : "none";
+
+        if (show) visible++;
+      });
+
+      empty.style.display = visible ? "none" : "block";
+    }
+
+    document.getElementById("searchForm")
+      .addEventListener("submit", event => {
+        event.preventDefault();
+        filterJobs();
+      });
+
+    document.querySelectorAll(".category")
+      .forEach(category => {
+        category.addEventListener("click", () => {
+          const value = category.dataset.category;
+
+          selectedCategory =
+            selectedCategory === value ? "" : value;
+
+          filterJobs();
+        });
+      });
+
+    function showNotice() {
+      alert(
+        "Ini masih contoh tampilan. " +
+        "Detail lowongan akan tersedia setelah database dibuat."
+      );
+    }
+  </script>
+
+</body>
+</html>
