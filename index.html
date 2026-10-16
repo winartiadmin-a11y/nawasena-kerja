@@ -198,13 +198,11 @@
       pesan.textContent = "Memuat lowongan kerja...";
       daftar.replaceChildren();
 
-      const { data, error } = await supabase
-        .from("lowongan")
-        .select(
-          "id, judul, perusahaan, lokasi, pendidikan, deskripsi, sumber_url, batas_lamaran, status"
-        )
-        .eq("status", "aktif")
-        .order("created_at", { ascending: false });
+     const { data, error } = await supabase
+  .from("lowongan")
+  .select("*")
+  .eq("status", "aktif")
+  .order("dibuat_pada", { ascending: false });
       console.log("Data lowongan:", data);
 console.log("Kesalahan Supabase:", error);
 
