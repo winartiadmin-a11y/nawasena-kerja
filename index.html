@@ -205,6 +205,8 @@
         )
         .eq("status", "aktif")
         .order("created_at", { ascending: false });
+      console.log("Data lowongan:", data);
+console.log("Kesalahan Supabase:", error);
 
       if (error) {
         console.error("Kesalahan Supabase:", error);
