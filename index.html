@@ -1,95 +1,311 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAWASENA KERJA</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7f5;color:#20352b}
-header{background:#124b35;color:white;padding:25px 6%}
-.logo{font-size:25px;font-weight:bold;letter-spacing:1px}
-header p{margin-bottom:0;color:#d8f0df}
-.hero{padding:55px 6%;background:linear-gradient(120deg,#155a3c,#25815a);color:white}
-.hero h1{font-size:36px;margin:0 0 12px}
-.hero p{font-size:17px;line-height:1.6}
-.search{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px}
-input,select,button{padding:14px;border:0;border-radius:8px;font-size:15px}
-input,select{flex:1;min-width:180px}
-button{background:#e7bb58;color:#183c2b;font-weight:bold;cursor:pointer}
-main{padding:30px 6%}
-h2{color:#155a3c}
-.jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.card{background:white;padding:22px;border-radius:14px;box-shadow:0 4px 15px #183c2b12}
-.card h3{margin-top:0;color:#155a3c}
-.tag{display:inline-block;background:#e3f4e8;padding:6px 10px;border-radius:20px;font-size:12px}
-.card p{color:#52645a;line-height:1.5}
-.apply{display:inline-block;background:#155a3c;color:white;padding:11px 15px;border-radius:7px;text-decoration:none;margin-top:8px}
-.note{font-size:13px;color:#68786f}
-footer{background:#103e2c;color:white;text-align:center;padding:25px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAWASENA KERJA - Lowongan Kerja</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7f5;
+      color: #20332b;
+    }
+
+    header {
+      background: #124b35;
+      color: white;
+      padding: 24px 6%;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    header p {
+      color: #d8f0df;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 16px;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #155a3c, #258b60);
+      color: white;
+      padding: 35px 25px;
+      border-radius: 16px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    .pencarian {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 13px;
+      border-radius: 8px;
+      border: 1px solid #d0d9d3;
+      font-size: 15px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    button {
+      background: #16734c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #daftar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    .kartu {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px #0000000c;
+    }
+
+    .kartu h2 {
+      font-size: 20px;
+      color: #155a3c;
+    }
+
+    .perusahaan {
+      font-weight: bold;
+    }
+
+    .label {
+      display: inline-block;
+      background: #e1f4e9;
+      color: #17623e;
+      padding: 6px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .lamar {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 11px 15px;
+      border-radius: 7px;
+      background: #16734c;
+      color: white;
+      text-decoration: none;
+    }
+
+    #pesan {
+      margin: 20px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #124b35;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<div class="logo">🌿 NAWASENA KERJA</div>
-<p>Peluang Kerja, Masa Depan Lebih Baik</p>
-</header>
-<section class="hero">
-<h1>Temukan Peluang Kerja Impianmu</h1>
-<p>Jelajahi informasi lowongan kerja dan temukan peluang untuk masa depan yang lebih baik.</p>
-<div class="search">
-<input id="q" placeholder="Cari posisi pekerjaan...">
-<select id="loc">
-<option value="">Semua lokasi</option>
-<option>Jakarta</option>
-<option>Surabaya</option>
-<option>Bandung</option>
-<option>Semarang</option>
-<option>Bali</option>
-</select>
-<button onclick="searchJobs()">Cari Lowongan</button>
-</div>
-</section>
-<main>
-<h2>💼 Informasi Lowongan Kerja</h2>
-<p>Temukan pekerjaan sesuai minat dan kemampuanmu.</p>
-<div class="jobs" id="jobs">
-<article class="card" data-title="admin" data-loc="jakarta">
-<span class="tag">Contoh lowongan</span>
-<h3>Staff Administrasi</h3>
-<p>📍 Jakarta</p><p>Posisi administrasi kantor. Periksa kualifikasi dan informasi perusahaan sebelum melamar.</p>
-<a class="apply" href="https://www.kemnaker.go.id/" target="_blank">Cari Informasi Resmi</a>
-</article>
-<article class="card" data-title="operator produksi" data-loc="surabaya">
-<span class="tag">Contoh lowongan</span>
-<h3>Operator Produksi</h3>
-<p>📍 Surabaya</p><p>Contoh kategori pekerjaan manufaktur. Pastikan tersedia lowongan aktif sebelum melamar.</p>
-<a class="apply" href="https://karirhub.kemnaker.go.id/" target="_blank">Lihat KarirHub</a>
-</article>
-<article class="card" data-title="customer service" data-loc="bandung">
-<span class="tag">Contoh lowongan</span>
-<h3>Customer Service</h3>
-<p>📍 Bandung</p><p>Contoh kategori pekerjaan layanan pelanggan. Detail perusahaan perlu diverifikasi.</p>
-<a class="apply" href="https://karirhub.kemnaker.go.id/" target="_blank">Cari Lowongan</a>
-</article>
-</div>
-<p class="note">Catatan: daftar di atas adalah contoh tampilan, bukan konfirmasi lowongan aktif. Selalu verifikasi sumber dan jangan membayar biaya rekrutmen yang mencurigakan.</p>
-</main>
-<footer>
-<strong>NAWASENA KERJA</strong>
-<p>Peluang Kerja, Masa Depan Lebih Baik</p>
-<p>Informasi kerja yang jelas, cermat, dan bertanggung jawab.</p>
-</footer>
-<script>
-function searchJobs(){
-const q=document.getElementById('q').value.toLowerCase();
-const loc=document.getElementById('loc').value.toLowerCase();
-document.querySelectorAll('.card').forEach(card=>{
-const title=card.dataset.title;
-const place=card.dataset.loc;
-card.style.display=(title.includes(q)&&(!loc||place===loc))?'block':'none';
-});
-}
-</script>
+  <header>
+    <div class="logo">🌿 NAWASENA KERJA</div>
+    <p>Peluang Kerja, Masa Depan Lebih Baik</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Temukan Peluang Kerja Impianmu</h1>
+      <p>
+        Jelajahi informasi lowongan kerja dan temukan peluang
+        untuk masa depan yang lebih baik.
+      </p>
+    </section>
+
+    <h2>Lowongan Kerja Terbaru</h2>
+
+    <div class="pencarian">
+      <input
+        id="q"
+        type="search"
+        placeholder="Cari jabatan atau perusahaan..."
+      >
+
+      <input
+        id="lok"
+        type="search"
+        placeholder="Cari lokasi..."
+      >
+
+      <button id="cari">Cari Lowongan</button>
+    </div>
+
+    <div id="pesan">Menghubungkan ke database...</div>
+    <section id="daftar"></section>
+  </main>
+
+  <footer>
+    <strong>NAWASENA KERJA</strong>
+    <p>Informasi kerja yang jelas, cermat, dan bertanggung jawab.</p>
+  </footer>
+
+  <script type="module">
+    import {
+      createClient
+    } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+    const SUPABASE_URL = "GANTI_DENGAN_PROJECT_URL";
+    const SUPABASE_KEY = "GANTI_DENGAN_PUBLISHABLE_KEY";
+
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    const daftar = document.getElementById("daftar");
+    const pesan = document.getElementById("pesan");
+    const q = document.getElementById("q");
+    const lok = document.getElementById("lok");
+
+    let lowongan = [];
+
+    async function ambilLowongan() {
+      pesan.textContent = "Memuat lowongan kerja...";
+      daftar.replaceChildren();
+
+      const { data, error } = await supabase
+        .from("lowongan")
+        .select(
+          "id, judul, perusahaan, lokasi, pendidikan, deskripsi, sumber_url, batas_lamaran, status"
+        )
+        .eq("status", "aktif")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Kesalahan Supabase:", error);
+        pesan.textContent =
+          "Data belum dapat dimuat. Periksa koneksi, izin akses tabel, dan pengaturan keamanan Supabase.";
+        return;
+      }
+
+      lowongan = data || [];
+      tampilkanLowongan();
+    }
+
+    function tampilkanLowongan() {
+      daftar.replaceChildren();
+
+      const kata = q.value.trim().toLowerCase();
+      const lokasi = lok.value.trim().toLowerCase();
+
+      const hasil = lowongan.filter(item => {
+        const judul = (item.judul || "").toLowerCase();
+        const perusahaan = (item.perusahaan || "").toLowerCase();
+        const tempat = (item.lokasi || "").toLowerCase();
+
+        return (
+          (judul.includes(kata) || perusahaan.includes(kata)) &&
+          tempat.includes(lokasi)
+        );
+      });
+
+      if (hasil.length === 0) {
+        pesan.textContent =
+          lowongan.length === 0
+            ? "Belum ada lowongan aktif."
+            : "Lowongan yang cocok tidak ditemukan.";
+        return;
+      }
+
+      pesan.textContent = `${hasil.length} lowongan ditemukan.`;
+
+      hasil.forEach(item => {
+        const kartu = document.createElement("article");
+        kartu.className = "kartu";
+
+        const judul = document.createElement("h2");
+        judul.textContent = item.judul || "Jabatan tidak dicantumkan";
+
+        const perusahaan = document.createElement("p");
+        perusahaan.className = "perusahaan";
+        perusahaan.textContent =
+          item.perusahaan || "Perusahaan tidak dicantumkan";
+
+        const tempat = document.createElement("p");
+        tempat.textContent = "📍 " + (item.lokasi || "Lokasi tidak dicantumkan");
+
+        const pendidikan = document.createElement("p");
+        pendidikan.textContent =
+          "🎓 Pendidikan: " + (item.pendidikan || "Tidak dicantumkan");
+
+        const deskripsi = document.createElement("p");
+        deskripsi.textContent = item.deskripsi || "Tidak ada deskripsi.";
+
+        kartu.append(judul, perusahaan, tempat, pendidikan, deskripsi);
+
+        if (item.batas_lamaran) {
+          const batas = document.createElement("p");
+          batas.textContent =
+            "Batas lamaran: " + item.batas_lamaran;
+          kartu.append(batas);
+        }
+
+        if (item.sumber_url) {
+          try {
+            const url = new URL(item.sumber_url);
+
+            if (url.protocol === "https:" || url.protocol === "http:") {
+              const tautan = document.createElement("a");
+              tautan.className = "lamar";
+              tautan.href = url.href;
+              tautan.target = "_blank";
+              tautan.rel = "noopener noreferrer";
+              tautan.textContent = "Lihat Lowongan";
+              kartu.append(tautan);
+            }
+          } catch {
+            // Abaikan tautan yang formatnya tidak valid.
+          }
+        }
+
+        daftar.append(kartu);
+      });
+    }
+
+    document.getElementById("cari").addEventListener(
+      "click",
+      tampilkanLowongan
+    );
+
+    q.addEventListener("input", tampilkanLowongan);
+    lok.addEventListener("input", tampilkanLowongan);
+
+    ambilLowongan();
+  </script>
 </body>
 </html>
