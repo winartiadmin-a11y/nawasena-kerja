@@ -216,7 +216,12 @@ console.log("Kesalahan Supabase:", error);
 
       lowongan = data || [];
       tampilkanLowongan();
-    }
+    } 
+    
+    return (
+  (judul.includes(kata) || perusahaan.includes(kata)) &&
+  tempat.includes(lokasi)
+);
 
     function tampilkanLowongan() {
       daftar.replaceChildren();
