@@ -230,7 +230,7 @@ console.log("Kesalahan Supabase:", error);
         const tempat = (item.lokasi || "").toLowerCase();
 
         return (
-          (judul.includes(kata) || perusahaan.includes(kata)) &&
+          (judul.includes(kata) || perusahaan.includes(kata)) 
           tempat.includes(lokasi)
         );
       });
@@ -294,25 +294,167 @@ detail.addEventListener("click", function () {
 
 kartu.append(detail);
 
-if (item.sumber_url) {
-  try {
-    const url = new URL(item.sumber_url);
+const tombolLamar = document.createElement("button");
+tombolLamar.type = "button";
+tombolLamar.className = "lamar";
+tombolLamar.textContent = "Lamar Sekarang";
 
-    if (url.protocol === "https:" || url.protocol === "http:") {
-      const tautan = document.createElement("a");
-      tautan.className = "lamar";
-      tautan.href = url.href;
-      tautan.target = "_blank";
-      tautan.rel = "noopener noreferrer";
-      tautan.textContent = "Lamar Sekarang";
+tombolLamar.addEventListener("click", function () {
+  const formulir = document.createElement("dialog");
 
-      kartu.append(tautan);
-    }
-  } catch (error) {
-    console.warn("Tautan lamaran tidak valid.");
-  }
-}
+  formulir.innerHTML = `
+    <form id="formLamaran">
+      <h2>Formulir Lamaran Kerja</h2>
 
+      <p>
+        <strong>${item.judul || "Lowongan Kerja"}</strong>
+      </p>
+
+      <label for="namaPelamar">Nama Lengkap</label>
+      <input
+        id="namaPelamar"
+        name="nama_lengkap"
+        type="text"
+        required
+      >
+
+      <label for="emailPelamar">Email</label>
+      <input
+        id="emailPelamar"
+        name="email"
+        type="email"
+        required
+      >
+
+      <label for="waPelamar">Nomor WhatsApp</label>
+      <input
+        id="waPelamar"
+        name="nomor_whatsapp"
+        type="tel"
+        required
+      >
+
+      <label for="pendidikanPelamar">
+        Pendidikan Terakhir
+      </label>
+      <select
+        id="pendidikanPelamar"
+        name="pendidikan_terakhir"
+        required
+      >
+        <option value="">Pilih pendidikan</option>
+        <option value="SMP">SMP</option>
+        <option value="SMA/SMK">SMA/SMK</option>
+        <option value="D1">D1</option>
+        <option value="D2">D2</option>
+        <option value="D3">D3</option>
+        <option value="D4/S1">D4/S1</option>
+        <option value="S2">S2</option>
+        <option value="S3">S3</option>
+      </select>
+
+      <p id="statusLamaran" role="status"></p>
+
+      <button type="submit">Kirim Lamaran</button>
+      <button type="button" id="tutupLamaran">
+        Batal
+      </button>
+    </form>
+  `;
+
+  formulir.style.cssText =
+    "width:min(90%,420px);border:0;border-radius:12px;" +
+    "padding:24px;box-shadow:0 8px 30px #0003;";
+
+  formulir.querySelector("form").style.cssText =
+    "display:grid;gap:12px;font-family:Arial,sans-serif;";
+
+  formulir.querySelectorAll("input,select").forEach(elemen => {
+    elemen.style.cssText =
+      "width:100%;padding:12px;border:1px solid #ccc;" +
+      "border-radius:7px;box-sizing:border-box;";
+  });
+
+  formulir.querySelectorAll("button").forEach(tombol => {
+    tombol.style.cssText =
+      "padding:12px;border:0;border-radius:7px;" +
+      "background:#16734c;color:white;font-size:15px;";
+  });
+
+  document.body.appendChild(formulir);
+  formulir.showModal();
+
+  formulir.querySelector("#tutupLamaran")
+    .addEventListener("click", function () {
+      formulir.close();
+      formulir.remove();
+    });
+
+  formulir.addEventListener("close", function () {
+    formulir.remove();
+  });
+
+  formulir.querySelector("#formLamaran")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const tombolKirim =
+        formulir.querySelector('button[type="submit"]');
+      const status =
+        formulir.querySelector("#statusLamaran");
+
+      tombolKirim.disabled = true;
+      tombolKirim.textContent = "Mengirim...";
+      status.textContent = "Sedang mengirim lamaran.";
+
+      const dataForm = new FormData(event.target);
+
+      const dataLamaran = {
+        lowongan_id: Number(item.id),
+        nama_lengkap: dataForm.get("nama_lengkap").trim(),
+        email: dataForm.get("email").trim(),
+        nomor_whatsapp: dataForm.get("nomor_whatsapp").trim(),
+        pendidikan_terakhir:
+          dataForm.get("pendidikan_terakhir")
+      };
+
+      try {
+        const respons = await fetch(
+          "https://jjlbvrgzacqgxcedlsjg.supabase.co/functions/v1/kirim-lamaran",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataLamaran)
+          }
+        );
+
+        const hasil = await respons.json();
+
+        if (!respons.ok || !hasil.success) {
+          throw new Error(
+            hasil.error || "Lamaran gagal dikirim."
+          );
+        }
+
+        status.textContent =
+          "Lamaran berhasil dikirim. Terima kasih!";
+
+        formulir.querySelector("form").reset();
+        tombolKirim.textContent = "Berhasil";
+
+      } catch (error) {
+        status.textContent =
+          error.message || "Terjadi kesalahan saat mengirim.";
+
+        tombolKirim.disabled = false;
+        tombolKirim.textContent = "Kirim Lamaran";
+      }
+    });
+});
+
+kartu.append(tombolLamar);
         daftar.append(kartu);
       });
     }
