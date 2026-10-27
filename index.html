@@ -231,7 +231,7 @@ console.log("Kesalahan Supabase:", error);
         const tempat = (item.lokasi || "").toLowerCase();
 
         return (
-          (judul.includes(kata) || perusahaan.includes(kata))&&
+          (judul.includes(kata) || perusahaan.includes(kata)) &&
           tempat.includes(lokasi)
         );
       });
